@@ -22,11 +22,9 @@ const rows = rowDatas.map(rowdata => rowdata.split(',')).slice(1);
 appData.initialize()
     .then(() => {
         console.log('data server connnect')
-        for (const row of rows) {
-            appData.query(
-            `INSERT INTO ${tableName} (${colunms})
-            VALUES (?);
-            `, [row]);
-        }
+        appData.query(
+        `INSERT INTO ${tableName} (${colunms})
+        VALUES ?;
+        `, [rows]);
     })
     .catch((error) => console.log(error))
